@@ -1,22 +1,14 @@
 <template>
-  <input 
-    type="text" 
-    v-model="name"
-  >
-  <button 
-    class="btn btn-primary"
-    @click="onSubmit"
-  >
-  Click
-  </button>
+  <input type="text" v-model="name" />
+  <button class="btn btn-primary" @click="onSubmit">Click</button>
 </template>
 
 <script>
-import  { ref } from 'vue';
+import { ref } from "vue";
 
 export default {
-  setup(){
-    const name = ref('Gyu');
+  setup() {
+    const name = ref("Gyu");
 
     const onSubmit = () => {
       console.log(name.value);
@@ -26,12 +18,12 @@ export default {
       name,
       onSubmit,
     };
-  }
-}
+  },
+};
 </script>
 
 <style>
-  .name {
-    color: blue;
-  }
+.name {
+  color: blue;
+}
 </style>
