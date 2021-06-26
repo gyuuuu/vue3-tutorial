@@ -47,21 +47,18 @@ export default {
       return todos.value;
     });
 
-    const addTodo = (todo) => {
+    const addTodo = async (todo) => {
       error.value = '';
-      axios
-        .post('http://localhost:3000/todos', {
+      try {
+        const res = await axios.post('http://localhost:3000/todos', {
           subject: todo.subject,
           completed: todo.completed,
-        })
-        .then((res) => {
-          console.log(res);
-          todos.value.push(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-          error.value = 'Something went wrong.';
         });
+        todos.value.push(res.data);
+      } catch (error) {
+        console.log(error);
+        error.value = 'Something went wrong.';
+      }
     };
 
     const toggleTodo = (index) => {
