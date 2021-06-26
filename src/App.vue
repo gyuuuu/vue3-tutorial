@@ -47,6 +47,18 @@ export default {
       return todos.value;
     });
 
+    const getTodos = async () => {
+      try {
+        const res = await axios.get('http://localhost:3000/todos');
+        todos.value = res.data;
+      } catch (error) {
+        console.log(error);
+        error.value = 'Something went wrong.';
+      }
+    };
+
+    getTodos();
+
     const addTodo = async (todo) => {
       error.value = '';
       try {
@@ -74,6 +86,7 @@ export default {
       searchText,
       filteredTodos,
       error,
+      getTodos,
       addTodo,
       toggleTodo,
       deleteTodo,
