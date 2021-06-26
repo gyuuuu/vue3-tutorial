@@ -19,6 +19,41 @@
       @toggle-todo="toggleTodo"
       @delete-todo="deleteTodo"
     />
+    <hr />
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li v-if="currentPage !== 1" class="page-item">
+          <a
+            style="cursor: pointer"
+            class="page-link"
+            @click="getTodos(currentPage - 1)"
+          >
+            Previous
+          </a>
+        </li>
+        <li
+          v-for="page in numberOfPages"
+          :key="page"
+          class="page-item"
+          :class="currentPage === page ? 'active' : ''"
+        >
+          <a
+            style="cursor: pointer"
+            class="page-link"
+            @click="getTodos(page)"
+            >{{ page }}</a
+          >
+        </li>
+        <li v-if="currentPage !== numberOfPages" class="page-item">
+          <a
+            style="cursor: pointer"
+            class="page-link"
+            @click="getTodos(currentPage + 1)"
+            >Next</a
+          >
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 
@@ -37,6 +72,14 @@ export default {
   setup() {
     const todos = ref([]);
     const error = ref('');
+    const numberOfTodos = ref(0);
+    const limit = 5;
+    const currentPage = ref(1);
+
+    const numberOfPages = computed(() => {
+      return Math.ceil(numberOfTodos.value / limit);
+    });
+
     const searchText = ref('');
     const filteredTodos = computed(() => {
       if (searchText.value) {
@@ -47,9 +90,13 @@ export default {
       return todos.value;
     });
 
-    const getTodos = async () => {
+    const getTodos = async (page = currentPage.value) => {
+      currentPage.value = page;
       try {
-        const res = await axios.get('http://localhost:3000/todos');
+        const res = await axios.get(
+          `http://localhost:3000/todos?_page=${page}&_limit=${limit}`
+        );
+        numberOfTodos.value = res.headers['x-total-count'];
         todos.value = res.data;
       } catch (error) {
         console.log(error);
@@ -104,6 +151,9 @@ export default {
       searchText,
       filteredTodos,
       error,
+      currentPage,
+      numberOfTodos,
+      numberOfPages,
       getTodos,
       addTodo,
       toggleTodo,
