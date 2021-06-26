@@ -6,6 +6,7 @@
       type="text"
       v-model="searchText"
       placeholder="Search"
+      @keyup.enter="searchTodo"
     />
     <hr />
     <TodoSimpleForm @add-todo="addTodo" />
@@ -82,17 +83,18 @@ export default {
 
     const searchText = ref('');
 
+    let timeout = null;
     watch(searchText, () => {
-      getTodos(1);
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        getTodos(1);
+      }, 2000);
     });
-    // const filteredTodos = computed(() => {
-    //   if (searchText.value) {
-    //     return todos.value.filter((todo) => {
-    //       return todo.subject.includes(searchText.value);
-    //     });
-    //   }
-    //   return todos.value;
-    // });
+
+    const searchTodo = () => {
+      clearTimeout(timeout);
+      getTodos(1);
+    };
 
     const getTodos = async (page = currentPage.value) => {
       currentPage.value = page;
@@ -153,7 +155,6 @@ export default {
     return {
       todos,
       searchText,
-      // filteredTodos,
       error,
       currentPage,
       numberOfTodos,
@@ -162,6 +163,7 @@ export default {
       addTodo,
       toggleTodo,
       deleteTodo,
+      searchTodo,
     };
   },
 };
