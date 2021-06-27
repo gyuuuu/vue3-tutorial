@@ -22,7 +22,7 @@
     },
     {
       "subject": "1",
-      "completed": false,
+      "completed": true,
       "id": 5
     }
   ]
