@@ -1,6 +1,9 @@
 <template>
   <div v-for="(todo, index) in todos" :key="todo.id" class="card mt-2">
-    <div class="card-body p-2 d-flex align-items-center">
+    <div
+      class="card-body p-2 d-flex align-items-center"
+      @click="moveToPage(todo.id)"
+    >
       <div class="form-check flex-grow-1">
         <input
           class="form-check-input"
@@ -22,6 +25,8 @@
 >
 
 <script>
+import { useRouter } from 'vue-router';
+
 export default {
   props: {
     todos: {
@@ -32,6 +37,7 @@ export default {
   emits: ['toggle-todo', 'delete-todo'],
 
   setup(props, { emit }) {
+    const router = useRouter();
     const toggleTodo = (index) => {
       emit('toggle-todo', index);
     };
@@ -40,9 +46,21 @@ export default {
       emit('delete-todo', index);
     };
 
+    const moveToPage = (todoId) => {
+      console.log(todoId);
+      // router.push('/todos/' + todoId);
+      router.push({
+        name: 'Todo',
+        params: {
+          id: todoId,
+        },
+      });
+    };
+
     return {
       toggleTodo,
       deleteTodo,
+      moveToPage,
     };
   },
 };
