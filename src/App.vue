@@ -1,6 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <router-link class="navbar-brand" :to="{ name: 'Home' }">Gyu</router-link>
+    <router-link class="navbar-brand" :to="{ name: 'Home' }">
+      Gyu
+    </router-link>
 
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
@@ -10,7 +12,9 @@
       </li>
     </ul>
   </nav>
-  <router-view />
+  <div class="container">
+    <router-view />
+  </div>
 </template>
 
 <script>
