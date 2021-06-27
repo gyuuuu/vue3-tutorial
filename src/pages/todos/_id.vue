@@ -27,7 +27,9 @@
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-primary" :disabled="!todoUpdated">
+      Save
+    </button>
     <button class="btn btn-outline-dark ml-2" @click="moveToTodoListPage">
       Cancel
     </button>
@@ -37,21 +39,28 @@
 <script>
 import axios from 'axios';
 import { useRoute, useRouter } from 'vue-router';
-import { ref } from '@vue/reactivity';
+import { ref, computed } from 'vue';
+import _ from 'lodash';
 
 export default {
   setup() {
     const route = useRoute();
     const router = useRouter();
     const todo = ref(null);
+    const originaltodo = ref(null);
     const loading = ref(true);
     const todoId = route.params.id;
 
     const getTodo = async () => {
       const res = await axios.get(`http://localhost:3000/todos/${todoId}`);
-      todo.value = res.data;
+      todo.value = { ...res.data };
+      originaltodo.value = { ...res.data };
       loading.value = false;
     };
+
+    const todoUpdated = computed(() => {
+      return !_.isEqual(todo.value, originaltodo.value);
+    });
 
     const toggleTodoStatus = () => {
       todo.value.completed = !todo.value.completed;
@@ -70,12 +79,14 @@ export default {
         subject: todo.value.subject,
         completed: todo.value.completed,
       });
-      console.log(res);
+
+      originaltodo.value = { ...res.data };
     };
 
     return {
       loading,
       todo,
+      todoUpdated,
       toggleTodoStatus,
       moveToTodoListPage,
       onSave,
