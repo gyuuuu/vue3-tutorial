@@ -16,8 +16,8 @@
       "id": 3
     },
     {
-      "subject": "new todo222",
-      "completed": false,
+      "subject": "new todo2",
+      "completed": true,
       "id": 4
     },
     {
