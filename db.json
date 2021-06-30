@@ -11,11 +11,6 @@
       "id": 2
     },
     {
-      "subject": "a",
-      "completed": false,
-      "id": 3
-    },
-    {
       "subject": "new todo2",
       "completed": true,
       "id": 4
