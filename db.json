@@ -30,30 +30,6 @@
       "completed": false,
       "body": "buy milk supermarket",
       "id": 6
-    },
-    {
-      "subject": "asdf",
-      "completed": false,
-      "body": "asdf",
-      "id": 7
-    },
-    {
-      "subject": "asd",
-      "completed": false,
-      "body": "asdf",
-      "id": 8
-    },
-    {
-      "subject": "asdf",
-      "completed": false,
-      "body": "asdf",
-      "id": 9
-    },
-    {
-      "subject": "asdfasdf",
-      "completed": false,
-      "body": "asdfasdfasdf",
-      "id": 10
     }
   ]
 }
