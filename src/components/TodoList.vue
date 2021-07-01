@@ -1,5 +1,4 @@
 <template>
-  <!-- <div v-for="(todo, index) in todos" :key="todo.id" class="card mt-2"> -->
   <List :items="todos">
     <template #default="{ item, index }">
       <div
