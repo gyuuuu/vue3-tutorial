@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { useContext } from 'vue';
 export default {
   props: {
     label: {
@@ -23,9 +24,9 @@ export default {
     },
   },
 
-  setup(props, { emit }) {
+  setup() {
+    const { emit } = useContext();
     const onInput = (e) => {
-      console.log(e.target.value);
       emit('update:subject', e.target.value);
     };
 
