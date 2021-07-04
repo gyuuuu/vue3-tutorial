@@ -3,72 +3,7 @@
     {
       "subject": "buy car",
       "completed": false,
-      "id": 2
-    },
-    {
-      "subject": "new todo2",
-      "completed": true,
-      "id": 4
-    },
-    {
-      "subject": "buy milk",
-      "completed": false,
-      "body": "buy milk supermarket",
-      "id": 6
-    },
-    {
-      "subject": "a",
-      "completed": false,
-      "body": "a",
-      "id": 7
-    },
-    {
-      "subject": "b",
-      "completed": false,
-      "body": "b",
-      "id": 8
-    },
-    {
-      "subject": "c",
-      "completed": false,
-      "body": "c",
-      "id": 9
-    },
-    {
-      "subject": "test",
-      "completed": true,
-      "body": "test",
-      "id": 10
-    },
-    {
-      "subject": "hh",
-      "completed": false,
-      "body": "hh",
-      "id": 11
-    },
-    {
-      "subject": "aa",
-      "completed": false,
-      "body": "aa",
-      "id": 12
-    },
-    {
-      "subject": "abc",
-      "completed": false,
-      "body": "ccc",
-      "id": 13
-    },
-    {
-      "subject": "sssss",
-      "completed": false,
-      "body": "ss",
-      "id": 14
-    },
-    {
-      "subject": "asdf",
-      "completed": false,
-      "body": "asdf",
-      "id": 15
+      "id": 1
     }
   ]
 }
